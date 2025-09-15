@@ -1,0 +1,16 @@
+services:
+  milvus-standalone-1:
+    image: milvusdb/milvus:latest
+    container_name: milvus-standalone
+    command: ["milvus", "run", "standalone"]
+    environment:
+      DEPLOY_MODE: "STANDALONE"
+      ETCD_USE_EMBED: "true"
+      COMMON_STORAGETYPE: "local"
+    ports:
+      - "19530:19530"
+      - "9091:9091"
+    restart: unless-stopped
+    # If you want persistence later, add a volume (example):
+    # volumes:
+    #   - ./milvus-data:/var/lib/milvus
